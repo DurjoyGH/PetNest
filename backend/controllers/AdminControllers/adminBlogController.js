@@ -3,12 +3,16 @@ const Blog = require("../../models/Blog");
 exports.getBlogs = async (req, res) => {
   const { page = 1, limit = 5 } = req.query;
   try {
+   
     const blogs = await Blog.find({ accept: false })
-      .populate("userId", "name email address")
-      .skip((page - 1) * limit)
-      .limit(parseInt(limit))
-      .sort({ createdAt: -1 });
+    .populate('userId', 'name email address') 
+    .skip((page - 1) * limit)
+    .limit(parseInt(limit))
+    .sort({ createdAt: -1 });
+
     const total = await Blog.countDocuments({ accept: false });
+
+    console.log(blogs);
 
     res.json({
       blogs,
