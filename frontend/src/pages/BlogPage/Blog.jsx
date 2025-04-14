@@ -27,6 +27,7 @@ import MarkDownRender from "../../components/MarkDownRender/MarkDownRender";
 import "react-toastify/dist/ReactToastify.css";
 import LockIcon from '@mui/icons-material/Lock';
 import "./Blog.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -52,8 +53,8 @@ const Blog = () => {
   const fetchBlogs = async () => {
     try {
       const url = showMyBlogs 
-        ? `http://localhost:3000/api/blog/myBlogs?page=${currentPage}&limit=${blogsPerPage}`
-        : `http://localhost:3000/api/blog/getBlog?page=${currentPage}&limit=${blogsPerPage}`;
+        ? `${BACKEND_URL}/api/blog/myBlogs?page=${currentPage}&limit=${blogsPerPage}`
+        : `${BACKEND_URL}/api/blog/getBlog?page=${currentPage}&limit=${blogsPerPage}`;
 
       const headers = showMyBlogs 
         ? { Authorization: `Bearer ${localStorage.getItem("token")}` }
@@ -95,7 +96,7 @@ const Blog = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3000/api/blog/${blogId}/comments`,
+        `${BACKEND_URL}/api/blog/${blogId}/comments`,
         {
           method: "POST",
           headers: {

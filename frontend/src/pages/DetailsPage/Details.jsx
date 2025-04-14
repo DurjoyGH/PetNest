@@ -17,6 +17,7 @@ import StarIcon from '@mui/icons-material/Star';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import "./Details.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Details = () => {
   const { id } = useParams();
@@ -33,7 +34,7 @@ const Details = () => {
     const fetchProductDetails = async () => {
       try {
         const productResponse = await fetch(
-          `http://localhost:3000/api/details/getProductById/${id}`
+          `${BACKEND_URL}/api/details/getProductById/${id}`
         );
         const productData = await productResponse.json();
 
@@ -66,7 +67,7 @@ const Details = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3000/api/details/addReview`,
+        `${BACKEND_URL}/api/details/addReview`,
         {
           method: "POST",
           headers: {
@@ -99,7 +100,7 @@ const Details = () => {
   const handleAddToCart = async (productId) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/api/cart/addToCart", {
+      const response = await fetch(`${BACKEND_URL}/api/cart/addToCart`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

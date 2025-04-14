@@ -17,6 +17,7 @@ import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import AdminBar from "../../../components/AdminBar/AdminBar";
 import "./AdminUser.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const AdminUser = () => {
   const [users, setUsers] = useState([]);
@@ -28,7 +29,7 @@ const AdminUser = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/admin/adminUser/getUser', {
+      const response = await axios.get(`${BACKEND_URL}/api/admin/adminUser/getUser`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -55,7 +56,7 @@ const AdminUser = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.delete(`http://localhost:3000/api/admin/adminUser/removeUser/${userId}`, {
+          await axios.delete(`${BACKEND_URL}/api/admin/adminUser/removeUser/${userId}`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`
             }

@@ -16,6 +16,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const HandleDoctor = () => {
   const [doctors, setDoctors] = useState([]);
@@ -35,7 +36,7 @@ const HandleDoctor = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/admin/adminDoctor/getDoctor?page=${currentPage}&limit=${doctorPerPage}&approved=false`,
+        `${BACKEND_URL}/api/admin/adminDoctor/getDoctor?page=${currentPage}&limit=${doctorPerPage}&approved=false`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -74,7 +75,7 @@ const HandleDoctor = () => {
       if (result.isConfirmed) {
         try {
           const response = await fetch(
-            `http://localhost:3000/api/admin/adminDoctor/approve/${id}`,
+            `${BACKEND_URL}/api/admin/adminDoctor/approve/${id}`,
             {
               method: "PUT",
               headers: {
@@ -109,7 +110,7 @@ const HandleDoctor = () => {
       if (result.isConfirmed) {
         try {
           const response = await fetch(
-            `http://localhost:3000/api/admin/adminDoctor/decline/${id}`,
+            `${BACKEND_URL}/api/admin/adminDoctor/decline/${id}`,
             {
               method: "DELETE",
               headers: {

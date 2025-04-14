@@ -13,6 +13,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
 import "./ManageAdopt.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ManageAdopt = () => {
   const [pets, setPets] = useState([]);
@@ -29,7 +30,7 @@ const ManageAdopt = () => {
     const fetchPets = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:3000/api/adoption/getUserAdoption", {
+        const response = await fetch(`${BACKEND_URL}/api/adoption/getUserAdoption`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -64,7 +65,7 @@ const ManageAdopt = () => {
     setIsUpdating(true);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/api/adoption/updateAdoption", {
+      const response = await fetch(`${BACKEND_URL}/api/adoption/updateAdoption`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -95,7 +96,7 @@ const ManageAdopt = () => {
   const handleDeletePet = async (petId) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/api/adoption/deleteAdoption", {
+      const response = await fetch(`${BACKEND_URL}/api/adoption/deleteAdoption`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

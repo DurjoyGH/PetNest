@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CircularProgress } from "@mui/material";
 import './Register.css';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -57,7 +58,7 @@ const Register = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/api/authentication/register", {
+    const response = await fetch(`${BACKEND_URL}/api/authentication/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

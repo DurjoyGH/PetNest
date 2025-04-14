@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CircularProgress } from "@mui/material";
 import './Authentication.css';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Authentication = () => {
   const [token, setToken] = useState("");
@@ -20,7 +21,7 @@ const Authentication = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/api/authentication/authCode", {
+      const response = await fetch(`${BACKEND_URL}/api/authentication/authCode`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

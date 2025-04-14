@@ -4,6 +4,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { CircularProgress } from "@mui/material";
 import './VerifyEmail.css';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const VerifyEmail = () => {
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(false);
@@ -21,7 +23,7 @@ const VerifyEmail = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/api/authentication/verifyEmail", {
+      const response = await fetch(`${BACKEND_URL}/api/authentication/verifyEmail`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

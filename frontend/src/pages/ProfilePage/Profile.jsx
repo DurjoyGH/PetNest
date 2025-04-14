@@ -14,6 +14,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import BadgeIcon from '@mui/icons-material/Badge';
 import CakeIcon from '@mui/icons-material/Cake';
 import "./Profile.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Profile = () => {
   const [userData, setUserData] = useState({
@@ -35,7 +36,7 @@ const Profile = () => {
       const token = localStorage.getItem("token");
 
       try {
-        const response = await fetch("http://localhost:3000/api/user/profile", {
+        const response = await fetch(`${BACKEND_URL}/api/user/profile`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -79,7 +80,7 @@ const Profile = () => {
       setLoadingMore(true);
 
       const response = await fetch(
-        "http://localhost:3000/api/user/removeProfilePic",
+        `${BACKEND_URL}/api/user/removeProfilePic`,
         {
           method: "POST",
           headers: {
@@ -128,7 +129,7 @@ const Profile = () => {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:3000/api/user/editProfile",
+      `${BACKEND_URL}/api/user/editProfile`,
         {
           method: "POST",
           headers: {

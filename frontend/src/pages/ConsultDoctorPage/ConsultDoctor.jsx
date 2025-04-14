@@ -21,6 +21,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import PersonIcon from '@mui/icons-material/Person';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import "./ConsultDoctor.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ConsultDoctor = () => {
   const [doctors, setDoctors] = useState([]);
@@ -111,7 +112,7 @@ const ConsultDoctor = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:3000/api/doctor/getDoctor?page=${page}&district=${district}`
+        `${BACKEND_URL}/api/doctor/getDoctor?page=${page}&district=${district}`
       );
       const data = await response.json();
       setDoctors(data.doctors);
@@ -178,7 +179,7 @@ const ConsultDoctor = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:3000/api/doctor/request", {
+      const response = await fetch(`${BACKEND_URL}/api/doctor/request`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

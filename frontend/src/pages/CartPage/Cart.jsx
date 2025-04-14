@@ -21,6 +21,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import "react-toastify/dist/ReactToastify.css";
 import "./Cart.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const CheckOutModal = ({ open, onClose, product, seller }) => {
   const [quantity, setQuantity] = useState(1);
@@ -46,7 +47,7 @@ const CheckOutModal = ({ open, onClose, product, seller }) => {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/api/payment/makePayment",
+        `${BACKEND_URL}/api/payment/makePayment`,
         {
           method: "POST",
           headers: {
@@ -183,7 +184,7 @@ const Cart = () => {
           return;
         }
 
-        const response = await fetch("http://localhost:3000/api/cart/getCart", {
+        const response = await fetch(`${BACKEND_URL}/api/cart/getCart`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -203,7 +204,7 @@ const Cart = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:3000/api/cart/removeToCart",
+        `${BACKEND_URL}/api/cart/removeToCart`,
         {
           method: "POST",
           headers: {
@@ -233,7 +234,7 @@ const Cart = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3000/api/user/getUserById/${product.userId}`,
+        `${BACKEND_URL}/api/user/getUserById/${product.userId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

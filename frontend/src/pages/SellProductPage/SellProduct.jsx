@@ -12,6 +12,7 @@ import PetsIcon from '@mui/icons-material/Pets';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import DescriptionIcon from '@mui/icons-material/Description';
 import "./SellProduct.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const SellProduct = () => {
   const [productData, setProductData] = useState({
@@ -78,7 +79,7 @@ const SellProduct = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:3000/api/product/addProduct",
+        `${BACKEND_URL}/api/product/addProduct`,
         {
           method: "POST",
           headers: {

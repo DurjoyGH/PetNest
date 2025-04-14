@@ -4,6 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { toast } from "react-toastify";
 import "./NavBar.css";
 import "react-toastify/dist/ReactToastify.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -45,7 +46,7 @@ const NavBar = () => {
 
       if (token) {
         try {
-          const response = await fetch("http://localhost:3000/api/cart/getCart", {
+          const response = await fetch(`${BACKEND_URL}/api/cart/getCart`, {
             method: "GET",
             headers: {
               "Authorization": `Bearer ${token}`,

@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CircularProgress } from "@mui/material";
 import './AdminLogin.css';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -18,7 +19,7 @@ const AdminLogin = () => {
 
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3000/api/admin/adminAuthentication/adminLogin", {
+      const response = await fetch(`${BACKEND_URL}/api/admin/adminAuthentication/adminLogin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

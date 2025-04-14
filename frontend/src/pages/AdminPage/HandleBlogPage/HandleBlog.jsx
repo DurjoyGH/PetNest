@@ -16,6 +16,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import "./HandleBlog.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const HandleBlog = () => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const HandleBlog = () => {
     const fetchBlogs = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/admin/adminBlog/getBlog?page=${currentPage}&limit=${blogsPerPage}&accept=false`,
+          `${BACKEND_URL}/api/admin/adminBlog/getBlog?page=${currentPage}&limit=${blogsPerPage}&accept=false`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -75,7 +76,7 @@ const HandleBlog = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `http://localhost:3000/api/admin/adminBlog/approve/${id}`,
+          `${BACKEND_URL}/api/admin/adminBlog/approve/${id}`,
           {
             method: "PUT",
             headers: {
@@ -117,7 +118,7 @@ const HandleBlog = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `http://localhost:3000/api/admin/adminBlog/decline/${id}`,
+          `${BACKEND_URL}/api/admin/adminBlog/decline/${id}`,
           {
             method: "DELETE",
             headers: {

@@ -20,6 +20,7 @@ import {
 import moment from "moment";
 import AdminBar from "../../../components/AdminBar/AdminBar";
 import "./AdminPaymentDetails.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const StyledContainer = styled(Container)(({ theme }) => ({
   marginTop: theme.spacing(4),
@@ -55,7 +56,7 @@ const AdminPaymentDetails = () => {
 
       try {
         const response = await fetch(
-          "http://localhost:3000/api/admin/adminPaymentDetails/getPayment",
+          `${BACKEND_URL}/api/admin/adminPaymentDetails/getPayment`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
