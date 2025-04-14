@@ -13,6 +13,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import DescriptionIcon from '@mui/icons-material/Description';
 import "./UpdateProduct.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const UpdateProduct = () => {
   const [products, setProducts] = useState([]);
@@ -31,7 +32,7 @@ const UpdateProduct = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          "http://localhost:3000/api/product/getUserProduct",
+          `${BACKEND_URL}/api/product/getUserProduct`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -69,7 +70,7 @@ const UpdateProduct = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:3000/api/product/updateProduct",
+        `${BACKEND_URL}/api/product/updateProduct`,
         {
           method: "POST",
           headers: {
@@ -103,7 +104,7 @@ const UpdateProduct = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:3000/api/product/deleteProduct",
+        `${BACKEND_URL}/api/product/deleteProduct`,
         {
           method: "POST",
           headers: {

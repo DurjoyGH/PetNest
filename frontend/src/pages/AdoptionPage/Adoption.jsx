@@ -21,6 +21,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import PersonIcon from '@mui/icons-material/Person';
 import "./Adoption.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Adoption = () => {
   const [adoptions, setAdoptions] = useState([]);
@@ -35,7 +36,7 @@ const Adoption = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:3000/api/adoption/getAdoption?page=${page}&category=${category}`
+        `${BACKEND_URL}/api/adoption/getAdoption?page=${page}&category=${category}`
       );
       const data = await response.json();
       setAdoptions(data.adoptions);

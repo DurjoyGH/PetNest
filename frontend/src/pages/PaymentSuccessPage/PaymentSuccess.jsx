@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./PaymentSuccess.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const PaymentSuccess = () => {
   useEffect(() => {
@@ -14,7 +15,7 @@ const PaymentSuccess = () => {
       if (productId && totalCost && quantity && token) {
         try {
           const response = await axios.post(
-            "http://localhost:3000/api/payment/completeOrder",
+            `${BACKEND_URL}/api/payment/completeOrder`,
             { productId, quantity, totalCost },
             {
               headers: {

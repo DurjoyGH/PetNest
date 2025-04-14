@@ -11,6 +11,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import SaveIcon from '@mui/icons-material/Save';
 import "./GiveAdopt.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const GiveAdopt = () => {
   const [petData, setPetData] = useState({
@@ -75,7 +76,7 @@ const GiveAdopt = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:3000/api/adoption/giveAdopt",
+        `${BACKEND_URL}/api/adoption/giveAdop`,
         {
           method: "POST",
           headers: {

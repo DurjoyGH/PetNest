@@ -23,6 +23,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import CancelIcon from "@mui/icons-material/Cancel";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import Swal from 'sweetalert2';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ShowOrder = () => {
   const [orders, setOrders] = useState([]);
@@ -38,7 +39,7 @@ const ShowOrder = () => {
 
       try {
         const response = await fetch(
-          "http://localhost:3000/api/order/getOrder",
+          `${BACKEND_URL}/api/order/getOrder`,
           {
             method: "GET",
             headers: {
@@ -82,7 +83,7 @@ const ShowOrder = () => {
     if (result.isConfirmed) {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/order/cancelOrder/${orderId}`,
+          `${BACKEND_URL}/api/order/cancelOrder/${orderId}`,
           {
             method: "POST",
             headers: {

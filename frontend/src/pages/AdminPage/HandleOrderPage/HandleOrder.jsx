@@ -11,6 +11,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import "./HandleOrder.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const HandleOrder = () => {
   const [orders, setOrders] = useState([]);
@@ -27,7 +28,7 @@ const HandleOrder = () => {
   
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/admin/adminOrder/getOrder",
+        `${BACKEND_URL}/api/admin/adminOrder/getOrder`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -54,7 +55,7 @@ const HandleOrder = () => {
     const token = localStorage.getItem('token');
     try {
       await axios.put(
-        `http://localhost:3000/api/admin/adminOrder/updateStatus/${orderId}`,
+        `${BACKEND_URL}/api/admin/adminOrder/updateStatus/${orderId}`,
         { status: newStatus },
         {
           headers: {

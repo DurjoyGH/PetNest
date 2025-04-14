@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CircularProgress } from "@mui/material";
 import './ForgotPassword.css';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const ForgotPassword = () => {
     setLoading(true); 
 
     try {
-      const response = await fetch("http://localhost:3000/api/authentication/forgotPassword", {
+      const response = await fetch(`${BACKEND_URL}/api/authentication/forgotPassword`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -5,6 +5,7 @@ import { IoClose } from "react-icons/io5";
 import axios from "axios";
 import { marked } from "marked";
 import "./ChatBot.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Chatbot = ({ onClose }) => {
   const [messages, setMessages] = useState([
@@ -26,7 +27,7 @@ const Chatbot = ({ onClose }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/chatBot/request",
+        `${BACKEND_URL}/api/chatBot/request`,
         {
           question: userMessage,
         }

@@ -23,6 +23,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import PetsIcon from '@mui/icons-material/Pets';
 import "./Home.css";
 import Chatbot from "../ChatBotPage/ChatBot";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -45,7 +46,7 @@ const Home = () => {
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
       const response = await fetch(
-        `http://localhost:3000/api/product/getProduct?page=${page}&category=${category}&search=${searchTerm}`,
+        `${BACKEND_URL}/api/product/getProduct?page=${page}&category=${category}&search=${searchTerm}`,
         { headers }
       );
 
@@ -75,7 +76,7 @@ const Home = () => {
   const handleAddToCart = async (productId) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/api/cart/addToCart", {
+      const response = await fetch(`${BACKEND_URL}/api/cart/addToCart`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

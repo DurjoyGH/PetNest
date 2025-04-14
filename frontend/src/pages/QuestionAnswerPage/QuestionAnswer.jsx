@@ -9,6 +9,7 @@ import Footer from "../../components/Footer/Footer";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./QuestionAnswer.css";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const QuestionAnswer = () => {
   const [questions, setQuestions] = useState([]);
@@ -38,8 +39,8 @@ const QuestionAnswer = () => {
         return;
       }
       const url = showMyQuestions
-        ? `http://localhost:3000/api/qa/getMyQuestions`
-        : "http://localhost:3000/api/qa/getQuestions";
+        ? `${BACKEND_URL}/api/qa/getMyQuestions`
+        : `${BACKEND_URL}/api/qa/getQuestions`;
   
       const response = await fetch(url, {
         method: "GET",
@@ -71,7 +72,7 @@ const QuestionAnswer = () => {
       return;
     }
     try {
-      const response = await fetch("http://localhost:3000/api/qa/addQuestion", {
+      const response = await fetch(`${BACKEND_URL}/api/qa/addQuestion`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -97,7 +98,7 @@ const QuestionAnswer = () => {
     if (!answerText.trim()) return;
     try {
       const response = await fetch(
-        `http://localhost:3000/api/qa/${questionId}/answers`,
+        `${BACKEND_URL}/api/qa/${questionId}/answers`,
         {
           method: "POST",
           headers: {
@@ -157,7 +158,7 @@ const QuestionAnswer = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/qa/${questionId}/${answerId}/like`,
+        `${BACKEND_URL}/api/qa/${questionId}/${answerId}/like`,
         {
           method: "POST",
           headers: {
@@ -212,7 +213,7 @@ const QuestionAnswer = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/qa/${questionId}/${answerId}/dislike`,
+        `${BACKEND_URL}/api/qa/${questionId}/${answerId}/dislike`,
         {
           method: "POST",
           headers: {

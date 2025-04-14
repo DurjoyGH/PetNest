@@ -10,6 +10,8 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import SaveIcon from '@mui/icons-material/Save';
 import "./WriteBlog.css";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const Blog = () => {
   const [blogData, setBlogData] = useState({
     title: "",
@@ -31,7 +33,7 @@ const Blog = () => {
     
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/api/blog/addBlog", {
+      const response = await fetch(`${BACKEND_URL}/api/blog/addBlog`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
